@@ -11,19 +11,53 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 
+import Gif from "./assets/img/teaser.gif";
+
+import {
+  Container
+} from 'reactstrap'
+
 import {
   CandyMachine,
   awaitTransactionSignatureConfirmation,
   getCandyMachineState,
   mintOneToken,
-  shortenAddress,
 } from "./candy-machine";
 
 const ConnectButton = styled(WalletDialogButton)``;
 
-const CounterText = styled.span``; // add your styles here
+const CounterText = styled.span``;
 
-const MintContainer = styled.div``; // add your styles here
+const MainDiv = styled.div`
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 600px;
+  background: black;
+  -webkit-mask-image: -webkit-gradient(linear, center top, center bottom, 
+    color-stop(0.80,  rgba(0,0,0,1)),
+    color-stop(1.00,  rgba(0,0,0,0)));
+  mask-image: -webkit-gradient(linear, center top, center bottom, 
+    color-stop(0.80,  rgba(0,0,0,1)),
+    color-stop(1.00,  rgba(0,0,0,0)));
+`;
+
+const InnerDiv = styled.div`
+  position: fixed;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+`;
+
+const MintContainer = styled.div`
+  position: fixed;
+  left: 50%;
+  top: 85%;
+  transform: translate(-50%, -50%);
+  color: grey;
+`;
 
 const MintButton = styled(Button)``; // add your styles here
 
@@ -165,20 +199,49 @@ const Home = (props: HomeProps) => {
     props.connection,
   ]);
 
+  var Snow = require('react-snow-effect');
+
+  const cardStylingForDesktop = {
+    container: {
+      height: "20vh",
+      width: "20vw",
+      display: "flex",
+      alignItems: "center",
+      marginBottom: "10%",
+      justifyContent: "center",
+
+    },
+    img: {
+      display: "flex",
+      marginLeft: "auto",
+      marginRight: "auto",
+      width:"100%",
+      maxWidth: "100%",
+      height: "auto",
+      marginBottom: "100%"
+    }
+  }
+
+  const StyledP = styled.div`
+  text-align: center;
+`;
+
   return (
-    <main>
-      {wallet && (
-        <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
-      )}
+    <MainDiv>
+      <Snow />
+        {/* {wallet && (
+          <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
+        )}
 
-      {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
-
-      {wallet && <p>Total Available: {itemsAvailable}</p>}
-
-      {wallet && <p>Redeemed: {itemsRedeemed}</p>}
-
-      {wallet && <p>Remaining: {itemsRemaining}</p>}
-
+        {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>} */}
+        {balance && itemsRemaining}
+        <InnerDiv>
+          <Container style={cardStylingForDesktop.container}>
+            <img style={cardStylingForDesktop.img} src={Gif} alt="teaser" />
+          </Container>
+          {wallet && <StyledP>Snowflakes minted: {itemsRedeemed}</StyledP>}
+          {wallet && <StyledP>Total Supply of Snowflakes: {itemsAvailable}</StyledP>}
+        </InnerDiv>
       <MintContainer>
         {!wallet ? (
           <ConnectButton>Connect Wallet</ConnectButton>
@@ -220,7 +283,7 @@ const Home = (props: HomeProps) => {
           {alertState.message}
         </Alert>
       </Snackbar>
-    </main>
+    </MainDiv>
   );
 };
 
