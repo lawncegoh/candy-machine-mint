@@ -234,7 +234,7 @@ const Home = (props: HomeProps) => {
         )}
 
         {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>} */}
-        {balance && itemsRemaining}
+        {balance && itemsRemaining && <div></div>}
         <InnerDiv>
           <Container style={cardStylingForDesktop.container}>
             <img style={cardStylingForDesktop.img} src={Gif} alt="teaser" />
