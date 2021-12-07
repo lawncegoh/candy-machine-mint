@@ -24,6 +24,7 @@ import {
   mintOneToken,
 } from "./candy-machine";
 
+
 const ConnectButton = styled(WalletDialogButton)``;
 
 const CounterText = styled.span``;
