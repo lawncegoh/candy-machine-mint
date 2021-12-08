@@ -1,3 +1,12 @@
+@font-face {
+	font-family: 'Pixel';
+	src: local('Pixel'), url(./assets/Pixel.woff) format('woff');
+	/* other formats include: 'woff2', 'truetype, 'opentype',
+							  'embedded-opentype', and 'svg' */
+}
+
 .App {
-  text-align: center;
+	font-family: Pixel;
+
+	text-align: center;
 }
