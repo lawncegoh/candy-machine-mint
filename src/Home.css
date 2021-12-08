@@ -1,0 +1,125 @@
+@font-face {
+	font-family: 'Pixel';
+	src: local('Pixel'), url(./assets/Pixel.woff) format('woff');
+	/* other formats include: 'woff2', 'truetype, 'opentype',
+							  'embedded-opentype', and 'svg' */
+}
+
+main {
+	height: 100vh;
+	font-family: Pixel;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+main p {
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 0px;
+	color: black;
+	font-size: 25px;
+}
+
+table,
+th,
+td {
+	color: black;
+	border: 2px dotted black;
+	border-collapse: collapse;
+	font-size: 25px;
+	padding: 10px;
+}
+
+@keyframes blink {
+	0%,
+	20% {
+		color: rgba(0, 0, 0, 0);
+		text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+	}
+	40% {
+		color: black;
+		text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+	}
+	60% {
+		text-shadow: 0.25em 0 0 black, 0.5em 0 0 rgba(0, 0, 0, 0);
+	}
+	80%,
+	100% {
+		text-shadow: 0.25em 0 0 black, 0.5em 0 0 black;
+	}
+}
+
+.saving {
+	font-size: 25px;
+}
+
+.saving span {
+	/**
+     * Use the blink animation, which is defined above
+     */
+	animation-name: blink;
+	/**
+     * The animation should take 1.4 seconds
+     */
+	animation-duration: 1.4s;
+	/**
+     * It will repeat itself forever
+     */
+	animation-iteration-count: infinite;
+	/**
+     * This makes sure that the starting style (opacity: .2)
+     * of the animation is applied before the animation starts.
+     * Otherwise we would see a short flash or would have
+     * to set the default styling of the dots to the same
+     * as the animation. Same applies for the ending styles.
+     */
+	animation-fill-mode: both;
+	font-weight: bold;
+	font-size: 50px;
+}
+
+.saving span:nth-child(2) {
+	/**
+     * Starts the animation of the third dot
+     * with a delay of .2s, otherwise all dots
+     * would animate at the same time
+     */
+	animation-delay: 0.2s;
+}
+
+.saving span:nth-child(3) {
+	/**
+     * Starts the animation of the third dot
+     * with a delay of .4s, otherwise all dots
+     * would animate at the same time
+     */
+	animation-delay: 0.4s;
+}
+
+@media (max-width: 768px) {
+	main {
+		padding-top: 60px;
+		padding-bottom: 60px;
+	}
+
+	table,
+	th,
+	td {
+		font-size: 15px;
+	}
+
+	th {
+		width: 150px;
+	}
+
+	.saving {
+		font-size: 20px;
+	}
+
+	.saving span {
+		font-size: 30px;
+	}
+}
